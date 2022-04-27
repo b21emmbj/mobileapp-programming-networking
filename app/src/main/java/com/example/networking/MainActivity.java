@@ -9,7 +9,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.List;
+import java.util.ArrayList;
+
 
 @SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener {
@@ -32,8 +33,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     public void onPostExecute(String json) {
         Log.d(TAG, json);
         Gson gson = new Gson();
-        Type type = new TypeToken<List<Mountain>>() {}.getType();
-        List<Mountain> listOfMountain = gson.fromJson(json, type);
+        Type type = new TypeToken<ArrayList<Mountain>>() {}.getType();
+        ArrayList<Mountain> listOfMountain = gson.fromJson(json, type);
 
         Log.d(TAG, "Numbers of elements "+listOfMountain.size());
         Log.d(TAG, "Element 0 "+listOfMountain.get(0).toString());
