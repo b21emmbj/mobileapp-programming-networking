@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     private final String JSON_FILE = "mountains.json";
     private final String TAG = "==>";
 
+    RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         //new JsonFile(this, this).execute(JSON_FILE);
         // läser in en textfil, startar execute när färdig
         new JsonTask(this).execute(JSON_URL);
+
+        recyclerView = findViewById(R.id.my_recycler);
+
     }
 
     @Override
