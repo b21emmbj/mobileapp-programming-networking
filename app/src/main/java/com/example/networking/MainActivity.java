@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     private final String JSON_FILE = "mountains.json";
     private final String TAG = "==>";
 
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
+    private ArrayList<Mountain> listOfMountain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         Log.d(TAG, json);
         Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<Mountain>>() {}.getType();
-        ArrayList<Mountain> listOfMountain = gson.fromJson(json, type);
+        listOfMountain = gson.fromJson(json, type);
 
         Log.d(TAG, "Numbers of elements "+listOfMountain.size());
         Log.d(TAG, "Element 0 "+listOfMountain.get(0).toString());
