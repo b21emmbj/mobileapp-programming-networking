@@ -14,9 +14,7 @@ public class Myadapter extends RecyclerView.Adapter<Viewholder>{
     private List<Mountain> mountains;
     public Myadapter(List<Mountain> mountains) {
         this.mountains = mountains;
-        //this.notifyDataSetChanged();
     }
-
 
     @NonNull
     @Override

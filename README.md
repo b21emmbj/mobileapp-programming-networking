@@ -3,6 +3,10 @@
 
 **Skriv din rapport här!**
 
+
+
+![](Screenshot.png)
+
 _Du kan ta bort all text som finns sedan tidigare_.
 
 ## Följande grundsyn gäller dugga-svar:
@@ -33,7 +37,7 @@ function errorCallback(error) {
 
 Bilder läggs i samma mapp som markdown-filen.
 
-![](android.png)
+
 
 Läs gärna:
 
