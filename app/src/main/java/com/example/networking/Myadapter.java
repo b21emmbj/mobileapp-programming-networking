@@ -11,12 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class Myadapter extends RecyclerView.Adapter<Viewholder>{
-
+    private List<Mountain> mountains;
     public Myadapter(List<Mountain> mountains) {
         this.mountains = mountains;
+        //this.notifyDataSetChanged();
     }
 
-    private List<Mountain> mountains;
+
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -27,8 +28,8 @@ public class Myadapter extends RecyclerView.Adapter<Viewholder>{
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         holder.name.setText(mountains.get(position).getName());
-        holder.location.setText(mountains.get(position).getName());
-        holder.size.setText(mountains.get(position).getName());
+        holder.location.setText(mountains.get(position).getLocation());
+        holder.size.setText(String.valueOf(mountains.get(position).getSize()));
     }
 
     @Override

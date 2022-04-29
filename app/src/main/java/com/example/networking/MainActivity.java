@@ -12,6 +12,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @SuppressWarnings("FieldCanBeLocal")
@@ -22,7 +23,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     private final String TAG = "==>";
 
     private RecyclerView recyclerView;
-    private ArrayList<Mountain> listOfMountain;
+    private List<Mountain> listOfMountain;
+    private Myadapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +36,21 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         new JsonTask(this).execute(JSON_URL);
 
         recyclerView = findViewById(R.id.my_recycler);
+        listOfMountain = new ArrayList<Mountain>();
+        adapter = new Myadapter(listOfMountain);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager( this));
     }
 
     @Override
     public void onPostExecute(String json) {
+
         Log.d(TAG, json);
         Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<Mountain>>() {}.getType();
-        listOfMountain = gson.fromJson(json, type);
-
+        ArrayList<Mountain> emma = gson.fromJson(json, type);
+        listOfMountain.addAll(emma);
+        adapter.notifyDataSetChanged();
         Log.d(TAG, "Numbers of elements "+listOfMountain.size());
         Log.d(TAG, "Element 0 "+listOfMountain.get(0).toString());
     }
