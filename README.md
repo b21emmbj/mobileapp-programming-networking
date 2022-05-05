@@ -1,6 +1,11 @@
 
 # Rapport
 
+Denna uppgift handlade om att koppla webtjänst-data till en mobilapp och visa upp datan strukturerat och i ordning med hjälp av bla en "recyclerview".
+Stegen för att göra detta möjligt upplevdes som många och lite invecklade då det bla krävdes en adapter som "länkade" ihop datan med recyclerviewn.
+I grova drag så hämtades datan från webtjänsten och via adaptern kopplades den samman med recyclerviewn. Fördelen med en recyclerview är att 
+den är dynamisk (kan hantera en obegränsad mängd data). 
+För recyclerview skapades en Viewholder som deklarerar vad som ska hämtas ut och presenteras från webtjänsten.
 
 
 För att hämta data från webtjänsten så krävs koden som finns i figur 1. 
@@ -34,9 +39,15 @@ Figur 2 Kod
         recyclerView.setLayoutManager(new LinearLayoutManager( this));
 ```
 
-I figur 3 presenteras kod som jag har i 
+I figur 3 presenteras kod som jag har i adaptern. De tre metoderna som används behövs för att skapa (och returnera) en View, binda datan från listan mountains till viewholdern och returnera listans längd.
 Figur 3 Kod
 ```
+public class Myadapter extends RecyclerView.Adapter<Viewholder>{
+    private List<Mountain> mountains;
+    public Myadapter(List<Mountain> mountains) {
+        this.mountains = mountains;
+    }
+
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerviewitem, parent, false);
